@@ -1,15 +1,21 @@
 import { useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
-import { addMovies, clearList } from "../../Redux/movies/movieSlice";
+import {
+	addMovies,
+	clearList,
+	getNextPage,
+} from "../../Redux/movies/movieSlice";
 
-export default function useMovieSearch(pageNumber, category) {
+export default function useMovieSearch(category) {
 	const [loading, setLoading] = useState(false);
 	const [error, setError] = useState(false);
 	const [movies, setMovies] = useState([]);
 	const [hasMore, setHasMore] = useState(false);
 	const dispatch = useDispatch();
 	const APIKey = "55d94f60e799bfe097c0411107134875";
+
+	const pageNumber = useSelector(getNextPage);
 
 	useEffect(() => {
 		dispatch(clearList());

@@ -14,7 +14,7 @@ const movieSlice = createSlice({
 		changePage: (state) => {
 			state.nextPageNumber += 1;
 		},
-		clearList: (state, { payload }) => {
+		clearList: (state) => {
 			state.movies = [];
 			state.nextPageNumber = 1;
 		},

@@ -4,8 +4,9 @@ import {
 	getAllMovies,
 	changePage,
 	getNextPage,
+	clearList,
 } from "../../Redux/movies/movieSlice";
-import { useState, useCallback, useRef } from "react";
+import { useState, useCallback, useRef, useEffect } from "react";
 import useMovieSearch from "../../common/apis/movieApi";
 import MovieCard from "../MovieCard/MovieCard";
 import "./MovieList.css";
@@ -14,7 +15,8 @@ const MovieList = (props) => {
 	const movies = useSelector(getAllMovies);
 	const pageNumber = useSelector(getNextPage);
 	const dispatch = useDispatch();
-	const { hasMore, loading, error } = useMovieSearch(pageNumber, props.category);
+
+	const { hasMore, loading, error } = useMovieSearch(props.category);
 
 	const observer = useRef();
 	const lastMoviesElementRef = useCallback((node) => {
