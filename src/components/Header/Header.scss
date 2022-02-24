@@ -1,0 +1,61 @@
+@import '../../common/colors.scss';
+
+.header {
+  display: flex;
+  background-color: $primary-color;
+  height: 72px;
+  padding: 0px 20px;
+  align-items: center;
+  justify-content: space-around;
+
+  .nav-wrapper {
+    display: flex;
+    align-items: center;
+    height: 100%;
+    .logo {
+      display: flex;
+      color: white;
+      align-items: center;
+      height: 100%;
+      text-align: end;
+      p {
+        margin-top: 10px;
+      }
+    }
+
+    .links {
+      margin-left: 60px;
+      display: flex;
+      align-items: center;
+      height: 100%;
+      ul {
+        display: flex;
+        align-items: center;
+        list-style: none;
+        padding: auto;
+        height: 100%;
+        a {
+          text-align: end;
+          display: flex;
+          align-items: center;
+          color: white;
+          height: 100%;
+        }
+
+        a:hover {
+          background-color: rgb(71, 179, 146);
+        }
+
+        li {
+          margin: 20px;
+        }
+      }
+    }
+  }
+
+  .user-img,
+  .user-img img {
+    width: 40px;
+    height: 40px;
+  }
+}

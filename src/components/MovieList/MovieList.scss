@@ -1,0 +1,16 @@
+.list-container {
+  align-items: center;
+  padding: 0 20vw;
+  .content-container {
+    border-bottom: 2px;
+    display: grid;
+    grid-template-rows: auto 1fr;
+    grid-template-columns: repeat(5, 200px);
+    justify-content: center;
+    grid-gap: 20px;
+  }
+  .title {
+    width: 55%;
+    margin-bottom: 5px;
+  }
+}
