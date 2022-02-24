@@ -1,6 +1,5 @@
 import React from "react";
-import MovieList from "../MovieList/MovieList";
-import axios from "axios";
+import Slider from "react-slick";
 import "./Home.css";
 
 const Home = () => {
@@ -12,6 +11,12 @@ const Home = () => {
 						<h2>歡迎！ </h2>
 						<h3>上百萬部電影、電視節目和人物在等你探索。立即瀏覽吧！</h3>
 					</div>
+				</div>
+			</div>
+			<div>
+				<div className="column-header">熱門電影</div>
+				<div className="carousel">
+					<Slider></Slider>
 				</div>
 			</div>
 		</div>

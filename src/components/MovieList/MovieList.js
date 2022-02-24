@@ -2,6 +2,7 @@ import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import {
 	getAllMovies,
+	getAllTVShows,
 	changePage,
 	getNextPage,
 	clearList,
@@ -13,7 +14,7 @@ import "./MovieList.css";
 
 const MovieList = (props) => {
 	const movies = useSelector(getAllMovies);
-	const pageNumber = useSelector(getNextPage);
+	const TVShows = useSelector(getAllTVShows);
 	const dispatch = useDispatch();
 
 	const { hasMore, loading, error } = useMovieSearch(props.category);
@@ -40,20 +41,35 @@ const MovieList = (props) => {
 					</h1>
 				</div>
 				<div className="content-container">
-					{movies.map((item, index) => {
-						if (movies.length === index + 1) {
-							return (
-								<MovieCard
-									key={item.id}
-									item={item}
-									index={index}
-									ref={lastMoviesElementRef}
-								/>
-							);
-						} else {
-							return <MovieCard key={item.id} item={item} index={index} />;
-						}
-					})}
+					{props.category == "movie"
+						? movies.map((item, index) => {
+								if (movies.length === index + 1) {
+									return (
+										<MovieCard
+											key={item.id}
+											item={item}
+											index={index}
+											ref={lastMoviesElementRef}
+										/>
+									);
+								} else {
+									return <MovieCard key={item.id} item={item} index={index} />;
+								}
+						  })
+						: TVShows.map((item, index) => {
+								if (TVShows.length === index + 1) {
+									return (
+										<MovieCard
+											key={item.id}
+											item={item}
+											index={index}
+											ref={lastMoviesElementRef}
+										/>
+									);
+								} else {
+									return <MovieCard key={item.id} item={item} index={index} />;
+								}
+						  })}
 				</div>
 			</div>
 		);

@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
 import {
 	addMovies,
+	addTVShows,
 	clearList,
 	getNextPage,
 	getAllMovies,
@@ -23,13 +24,13 @@ export default function useMovieSearch(category) {
 		dispatch(clearList());
 	}, [category]);
 
-	useEffect(async () => {
+	useEffect(() => {
 		{
 			{
 				setLoading(true);
 				setError(false);
 				let cancel;
-				await axios({
+				axios({
 					method: "GET",
 					url: `
 			https://api.themoviedb.org/3/discover/${category}?api_key=${APIKey}&language=zh-TW&sort_by=popularity.desc&with_watch_monetization_types=flatrate`,
@@ -39,7 +40,11 @@ export default function useMovieSearch(category) {
 					.then((res) => {
 						setHasMore(res.data.results.length > 0);
 						setLoading(false);
-						dispatch(addMovies(res.data.results));
+						if (category == "movie") {
+							dispatch(addMovies(res.data.results));
+						} else {
+							dispatch(addTVShows(res.data.results));
+						}
 					})
 					.catch((e) => {
 						if (axios.isCancel(e)) return;
@@ -48,7 +53,7 @@ export default function useMovieSearch(category) {
 				return () => cancel();
 			}
 		}
-	}, [pageNumber, dispatch]);
+	}, [pageNumber, category]);
 
 	return { loading, error, hasMore };
 }
