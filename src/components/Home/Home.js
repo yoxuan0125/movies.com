@@ -81,7 +81,7 @@ const Home = () => {
 						})}
 					</Slider>
 				</div>
-				<div className="column-header">TOP10 熱門電影</div>
+				<div className="column-header">TOP10 熱門影集</div>
 				<div className="carousel">
 					<Slider {...settings}>
 						{Top10TVShows.map((item, index) => {
