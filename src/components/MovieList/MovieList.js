@@ -37,11 +37,11 @@ const MovieList = (props) => {
 				<div>{loading && "Loading..."}</div>
 				<div className="title">
 					<h1>
-						{!loading && (props.category == "movie" ? "熱門電影" : "熱門影集")}
+						{!loading && (props.category === "movie" ? "熱門電影" : "熱門影集")}
 					</h1>
 				</div>
 				<div className="content-container">
-					{props.category == "movie"
+					{props.category === "movie"
 						? movies.map((item, index) => {
 								if (movies.length === index + 1) {
 									return (

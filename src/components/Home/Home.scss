@@ -13,7 +13,7 @@
     background-position: center;
     background-size: cover;
     .banner-filter {
-      background-color: rgba(95, 243, 199, 0.2);
+      background-color: rgba(6, 8, 8, 0.644);
       width: 100%;
       height: 100%;
       display: flex;
@@ -23,6 +23,34 @@
         padding-left: 200px;
         font-size: 25px;
       }
+    }
+  }
+
+  .column-header {
+    padding: 0 10%;
+    font-weight: bolder;
+    font-size: 30px;
+    margin-top: 20px;
+  }
+  .carousel {
+    width: 73vw;
+    padding: 0 10%;
+    overflow: hidden;
+
+    .slick-list {
+      width: 100%;
+      overflow: hidden;
+      box-sizing: initial;
+
+      .slick-slide {
+        .moviecard {
+          margin: 10px;
+        }
+      }
+    }
+
+    .slick-active {
+      justify-content: center;
     }
   }
 }

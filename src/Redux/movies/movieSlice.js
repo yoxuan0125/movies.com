@@ -1,5 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 const initialState = {
+	TOP10Movies: [],
 	movies: [],
 	TVShows: [],
 	nextPageNumber: 1,
