@@ -39,12 +39,18 @@
 
     .slick-list {
       width: 100%;
+
       overflow: hidden;
       box-sizing: initial;
 
       .slick-slide {
+        margin: 10px 0;
         .moviecard {
           margin: 10px;
+          &:hover {
+            transform: scale(1.1);
+            transition: all 0.3s;
+          }
         }
       }
     }

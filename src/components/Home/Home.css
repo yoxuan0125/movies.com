@@ -59,8 +59,19 @@
           box-sizing: initial;
 }
 
+.main-container .carousel .slick-list .slick-slide {
+  margin: 10px 0;
+}
+
 .main-container .carousel .slick-list .slick-slide .moviecard {
   margin: 10px;
+}
+
+.main-container .carousel .slick-list .slick-slide .moviecard:hover {
+  -webkit-transform: scale(1.1);
+          transform: scale(1.1);
+  -webkit-transition: all 0.3s;
+  transition: all 0.3s;
 }
 
 .main-container .carousel .slick-active {
