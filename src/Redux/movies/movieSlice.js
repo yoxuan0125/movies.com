@@ -3,6 +3,8 @@ const initialState = {
 	TOP10Movies: [],
 	movies: [],
 	TVShows: [],
+	movieDetails: [],
+	movieActors: [],
 	nextPageNumber: 1,
 };
 
@@ -19,6 +21,12 @@ const movieSlice = createSlice({
 		changePage: (state) => {
 			state.nextPageNumber += 1;
 		},
+		setMovieDetails: (state, { payload }) => {
+			state.movieDetails = payload;
+		},
+		setmovieActors: (state, { payload }) => {
+			state.movieActors = payload;
+		},
 		clearList: (state) => {
 			state.movies = [];
 			state.TVShows = [];
@@ -27,9 +35,16 @@ const movieSlice = createSlice({
 	},
 });
 
-export const { addMovies, clearList, changePage, addTVShows } =
-	movieSlice.actions;
+export const {
+	addMovies,
+	clearList,
+	changePage,
+	addTVShows,
+	setMovieDetails,
+	setmovieActors,
+} = movieSlice.actions;
 export const getAllMovies = (state) => state.movies.movies;
 export const getAllTVShows = (state) => state.movies.TVShows;
 export const getNextPage = (state) => state.movies.nextPageNumber;
+export const getMovieDetails = (state) => state.movies.movieDetails;
 export default movieSlice.reducer;

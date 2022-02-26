@@ -1,1 +1,43 @@
-/* No CSS *//*# sourceMappingURL=MovieDetails.css.map */
+.movieDetailsContainer {
+  border-bottom: 1px solid var(--primaryColor);
+  background-position: right -200px top;
+  background-size: cover;
+  background-repeat: no-repeat;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+}
+
+.movieDetailsContainer .movieDetailsContainer-filter {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  width: 100%;
+  background-image: linear-gradient(to right, #202020 150px, rgba(32, 32, 32, 0.84) 100%);
+}
+
+.movieDetailsContainer .movieDetailsContainer-filter .movieDetails {
+  max-width: 1440px;
+  width: 100%;
+  padding: 30px 40px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.movieDetailsContainer .movieDetailsContainer-filter .movieDetails .information {
+  padding: 20px;
+  color: white;
+}
+
+.movieDetailsContainer .movieDetailsContainer-filter .movieDetails .information h1 {
+  font-weight: bolder;
+}
+
+.movieDetailsContainer .movieDetailsContainer-filter .movieDetails .poster {
+  border-radius: 10px;
+  margin-right: 30px;
+}
+/*# sourceMappingURL=MovieDetails.css.map */

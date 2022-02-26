@@ -6,6 +6,7 @@ import PageNotFound from "./components/PageNotFound/PageNotFound";
 import MovieDetails from "./components/MovieDetails/MovieDetails";
 import "./App.css";
 import MovieList from "./components/MovieList/MovieList";
+import UserPage from "./components/UserPage/UserPage";
 
 function App() {
 	return (
@@ -14,9 +15,10 @@ function App() {
 				<Header></Header>
 				<Routes>
 					<Route path="/" element={<Home />}></Route>
-					<Route path="/movie/:omdbID" element={<MovieDetails />}></Route>
+					<Route path="/movies/:id" element={<MovieDetails />}></Route>
 					<Route path="/movies" element={<MovieList category={"movie"} />}></Route>
 					<Route path="/tv" element={<MovieList category={"tv"} />}></Route>
+					<Route path="/user" element={<UserPage />}></Route>
 					<Route path="*" element={<PageNotFound />}></Route>
 				</Routes>
 				<Footer />

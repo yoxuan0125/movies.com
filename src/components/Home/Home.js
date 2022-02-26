@@ -8,10 +8,6 @@ import RightArrow from "../images/right-arrow.svg";
 import "./Home.css";
 
 const Home = () => {
-	const [loading, setLoading] = useState(false);
-	const [error, setError] = useState(false);
-
-	const [hasMore, setHasMore] = useState(false);
 	const [Top10Movies, setTop10Movies] = useState([]);
 	const [Top10TVShows, setTop10TVShows] = useState([]);
 	const APIKey = "55d94f60e799bfe097c0411107134875";
@@ -37,27 +33,20 @@ const Home = () => {
 
 	//Get TOP10 movies
 	useEffect(() => {
-		{
-			{
-				const url = (c) =>
-					`https://api.themoviedb.org/3/discover/${c}?api_key=${APIKey}&language=zh-TW&sort_by=popularity.desc&with_watch_monetization_types=flatrate`;
+		const url = (c) =>
+			`https://api.themoviedb.org/3/discover/${c}?api_key=${APIKey}&language=zh-TW&sort_by=popularity.desc&with_watch_monetization_types=flatrate`;
 
-				let endpoints = [url("tv"), url("movie")];
+		let endpoints = [url("tv"), url("movie")];
 
-				axios
-					.all(endpoints.map((endpoint) => axios.get(endpoint)))
-					.then((data) => {
-						setHasMore(data[0].data.results.length > 0);
-						setLoading(false);
-						setTop10TVShows(data[0].data.results.slice(0, 10));
-						console.log(data[0]);
-						setTop10Movies(data[1].data.results.slice(0, 10));
-					})
-					.catch((e) => {
-						console.log(e);
-					});
-			}
-		}
+		axios
+			.all(endpoints.map((endpoint) => axios.get(endpoint)))
+			.then((data) => {
+				setTop10TVShows(data[0].data.results.slice(0, 10));
+				setTop10Movies(data[1].data.results.slice(0, 10));
+			})
+			.catch((e) => {
+				console.log(e);
+			});
 	}, []);
 
 	return (
