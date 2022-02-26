@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 const MovieCard = React.forwardRef((props, ref) => {
 	return (
 		<div key={props.index}>
-			<Link to={`${props.item.id}`} className="moviecard">
+			<Link to={`/movies/${props.item.id}`} className="moviecard">
 				<img
 					src={`https://image.tmdb.org/t/p/original${props.item.poster_path}`}
 					alt="error"
