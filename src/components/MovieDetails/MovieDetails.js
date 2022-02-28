@@ -92,11 +92,11 @@ const MovieDetails = () => {
 						</div>
 						<div className="info">
 							<div className="title">
-								<span>精彩影片</span>
+								<span>相關影片</span>
 							</div>
 							<div className="trailerBox">
 								{movieTrailer
-									? movieTrailer.slice(0, 2).map((item, index) => {
+									? movieTrailer.slice(0, 3).map((item, index) => {
 											return (
 												<a
 													href={`https://www.youtube.com/watch?v=${item.key}`}
