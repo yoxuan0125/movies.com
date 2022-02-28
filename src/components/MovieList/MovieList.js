@@ -4,8 +4,9 @@ import {
 	getAllMovies,
 	getAllTVShows,
 	changePage,
-	getNextPage,
-	clearList,
+	setMovieDetails,
+	setmovieActors,
+	setmovieTrailer,
 } from "../../Redux/movies/movieSlice";
 import { useState, useCallback, useRef, useEffect } from "react";
 import useMovieSearch from "../../common/apis/movieApi";
@@ -17,7 +18,7 @@ const MovieList = (props) => {
 	const TVShows = useSelector(getAllTVShows);
 	const dispatch = useDispatch();
 
-	const { hasMore, loading, error } = useMovieSearch(props.category);
+	const { hasMore, loading } = useMovieSearch(props.category);
 
 	const observer = useRef();
 	const lastMoviesElementRef = useCallback((node) => {
@@ -29,6 +30,12 @@ const MovieList = (props) => {
 			}
 		});
 		if (node) observer.current.observe(node);
+	});
+
+	useEffect(() => {
+		dispatch(setMovieDetails([]));
+		dispatch(setmovieActors([]));
+		dispatch(setmovieTrailer([]));
 	});
 
 	if (movies) {

@@ -4,10 +4,17 @@ import Slider from "react-slick";
 import MovieCard from "../MovieCard/MovieCard";
 import LeftArrow from "../images/left-arrow.svg";
 import RightArrow from "../images/right-arrow.svg";
+import {
+	setMovieDetails,
+	setmovieActors,
+	setmovieTrailer,
+} from "../../Redux/movies/movieSlice";
+import { useDispatch } from "react-redux";
 
 import "./Home.css";
 
 const Home = () => {
+	const dispatch = useDispatch();
 	const [Top10Movies, setTop10Movies] = useState([]);
 	const [Top10TVShows, setTop10TVShows] = useState([]);
 	const APIKey = "55d94f60e799bfe097c0411107134875";
@@ -33,6 +40,9 @@ const Home = () => {
 
 	//Get TOP10 movies
 	useEffect(() => {
+		dispatch(setMovieDetails([]));
+		dispatch(setmovieActors([]));
+		dispatch(setmovieTrailer([]));
 		const url = (c) =>
 			`https://api.themoviedb.org/3/discover/${c}?api_key=${APIKey}&language=zh-TW&sort_by=popularity.desc&with_watch_monetization_types=flatrate`;
 
