@@ -1,13 +1,23 @@
 import React from "react";
 import "./MovieCard.css";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 const MovieCard = React.forwardRef((props, ref) => {
+	const location = useLocation();
+
 	return (
-		<div key={props.index}>
-			<Link to={`/movies/${props.item.id}`} className="moviecard">
+		<div>
+			<Link
+				to={`${props.category == undefined ? location.pathname : props.category}/${
+					props.item.id
+				}`}
+				className="moviecard"
+				key={props.index}
+			>
 				<img
-					src={`https://image.tmdb.org/t/p/original${props.item.poster_path}`}
+					src={`https://image.tmdb.org/t/p/original${
+						props.item.poster_path || props.item.profile_path
+					}`}
 					alt="error"
 					className="movieimg"
 				/>

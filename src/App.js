@@ -15,9 +15,10 @@ function App() {
 				<Header></Header>
 				<Routes>
 					<Route path="/" element={<Home />}></Route>
-					<Route path="/movies/:id" element={<MovieDetails />}></Route>
-					<Route path="/movies" element={<MovieList category={"movie"} />}></Route>
+					<Route path="/:category/:id" element={<MovieDetails />}></Route>
+					<Route path="/movie" element={<MovieList category={"movie"} />}></Route>
 					<Route path="/tv" element={<MovieList category={"tv"} />}></Route>
+					<Route path="/:category/:id" element={<MovieDetails />}></Route>
 					<Route path="/user" element={<UserPage />}></Route>
 					<Route path="*" element={<PageNotFound />}></Route>
 				</Routes>

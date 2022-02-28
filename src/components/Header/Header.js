@@ -13,7 +13,7 @@ const Header = () => {
 				</Link>
 				<div className="links">
 					<ul>
-						<Link to="movies">
+						<Link to="movie">
 							<li>熱門電影</li>
 						</Link>
 						<Link to="tv">

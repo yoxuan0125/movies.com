@@ -65,7 +65,13 @@ const Home = () => {
 					<Slider {...settings}>
 						{Top10Movies.map((item, index) => {
 							return (
-								<MovieCard data-index={index} key={item.id} item={item} index={index} />
+								<MovieCard
+									data-index={index}
+									key={item.id}
+									item={item}
+									index={index}
+									category={"movie"}
+								/>
 							);
 						})}
 					</Slider>
@@ -75,7 +81,13 @@ const Home = () => {
 					<Slider {...settings}>
 						{Top10TVShows.map((item, index) => {
 							return (
-								<MovieCard data-index={index} key={item.id} item={item} index={index} />
+								<MovieCard
+									data-index={index}
+									key={item.id}
+									item={item}
+									index={index}
+									category={"tv"}
+								/>
 							);
 						})}
 					</Slider>

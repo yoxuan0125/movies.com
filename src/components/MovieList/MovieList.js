@@ -49,6 +49,7 @@ const MovieList = (props) => {
 											key={item.id}
 											item={item}
 											index={index}
+											category={"movie"}
 											ref={lastMoviesElementRef}
 										/>
 									);
@@ -63,6 +64,7 @@ const MovieList = (props) => {
 											key={item.id}
 											item={item}
 											index={index}
+											category={"tv"}
 											ref={lastMoviesElementRef}
 										/>
 									);

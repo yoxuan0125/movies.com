@@ -22,8 +22,17 @@
       padding: 30px 40px;
       display: flex;
       .information {
+        line-height: 35px;
         padding: 20px;
         color: white;
+        .actorsList {
+          width: 50%;
+          .actor {
+            margin-right: 30px;
+            display: inline-block;
+          }
+        }
+
         h1 {
           font-weight: bolder;
         }
@@ -33,5 +42,85 @@
         margin-right: 30px;
       }
     }
+  }
+}
+
+.detailbox {
+  display: flex;
+
+  justify-content: center;
+
+  .detailbox-container {
+    width: 1330px;
+    max-width: 1330px;
+    margin: 30px 0;
+
+    .info {
+      margin-bottom: 20px;
+      .title {
+        color: $primary-color;
+        font-size: 25px;
+        font-weight: 700;
+        height: 33px;
+        position: relative;
+        width: 100%;
+
+        &:before {
+          background: #e5e5e5;
+          bottom: 0;
+          content: '';
+          height: 1px;
+          left: 0;
+          position: absolute;
+          width: 100%;
+        }
+
+        span {
+          display: inline-block;
+          height: 100%;
+          position: relative;
+          &:before {
+            background: $primary-color;
+            bottom: 0;
+            content: '';
+            height: 1px;
+            left: 0;
+            position: absolute;
+            width: 100%;
+          }
+        }
+      }
+    }
+  }
+}
+
+.actorBox {
+  display: flex;
+  margin-top: 20px;
+  overflow-x: scroll;
+  padding: 20px;
+  .moviecard {
+    margin-right: 18px;
+    &:hover {
+      transform: scale(1.1);
+      transition: all 0.5s;
+      cursor: default;
+    }
+  }
+}
+
+.trailerBox {
+  display: flex;
+  margin-top: 20px;
+
+  padding: 20px;
+  .trailer {
+    width: 533px;
+    height: 300px;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    margin-right: 20px;
+    border-radius: 20px;
   }
 }
