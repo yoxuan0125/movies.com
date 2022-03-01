@@ -4,7 +4,7 @@
   display: flex;
   background-color: $primary-color;
   height: 72px;
-  padding: 0px 20px;
+  // padding: 0px 20px;
   align-items: center;
   justify-content: space-around;
 
@@ -12,44 +12,52 @@
     display: flex;
     align-items: center;
     height: 100%;
-    .logo {
+    width: 90%;
+
+    .nav {
+      position: absolute;
       display: flex;
       color: white;
       align-items: center;
-      height: 100%;
-      text-align: end;
-      p {
-        margin-top: 10px;
+      width: 85%;
+      justify-content: space-between;
+      .logo {
+        display: flex;
+        text-align: end;
+
+        p {
+          margin-top: 18px;
+        }
       }
     }
 
     .links {
-      margin-left: 60px;
       display: flex;
       align-items: center;
       height: 100%;
-      ul {
-        display: flex;
-        align-items: center;
-        list-style: none;
-        padding: auto;
-        height: 100%;
-        a {
-          text-align: end;
-          display: flex;
-          align-items: center;
-          color: white;
-          height: 100%;
-        }
+    }
+  }
 
-        a:hover {
-          background-color: rgb(71, 179, 146);
-        }
+  .category {
+    display: flex;
+    align-items: center;
+    list-style: none;
+    padding: auto;
+    height: 100%;
+    a {
+      text-align: end;
+      display: flex;
+      align-items: center;
+      color: white;
+      height: 100%;
+    }
 
-        li {
-          margin: 20px;
-        }
-      }
+    a:hover {
+      background-color: rgb(71, 179, 146);
+    }
+
+    li {
+      margin: 20px;
     }
   }
 
@@ -57,5 +65,57 @@
   .user-img img {
     width: 40px;
     height: 40px;
+    // margin-right: -15vw;
+  }
+  .nav-btn {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .links {
+    position: absolute;
+    opacity: 0;
+    display: inline-block !important;
+    left: -6%;
+
+    justify-content: center;
+    height: 105px !important;
+    background-color: rgb(71, 179, 146);
+  }
+  .linksOpen {
+    position: absolute;
+    opacity: 1;
+    transform: translate3d(0, 87px, 0);
+    display: inline-block !important;
+    left: -6%;
+    // right: -20%;
+    justify-content: center;
+    height: 105px !important;
+    background-color: rgb(71, 179, 146);
+    transition: all 0.5s ease-in-out;
+    width: max-content;
+  }
+  .category {
+    display: flex;
+    flex-direction: column;
+    width: 100vw;
+
+    li {
+      margin: 5px !important;
+    }
+  }
+  .nav-btn {
+    align-items: center;
+    display: flex !important;
+    justify-content: center;
+    position: absolute;
+    background: none;
+    border: none;
+    width: 40px;
+    height: 40px;
+    right: 15%;
+    border-radius: 50%;
+    font-size: 18px;
   }
 }

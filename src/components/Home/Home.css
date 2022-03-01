@@ -11,6 +11,7 @@
       -ms-flex-pack: center;
           justify-content: center;
   background-color: #fff;
+  z-index: -2;
 }
 
 .main-container .banner {
@@ -78,5 +79,21 @@
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
+}
+
+@media screen and (max-width: 600px) {
+  .main-container .banner {
+    height: 300px;
+  }
+  .main-container .banner .banner-filter {
+    -webkit-box-align: end !important;
+        -ms-flex-align: end !important;
+            align-items: flex-end !important;
+  }
+  .main-container .banner .banner-filter .banner-title {
+    padding-left: 20px;
+    margin-bottom: 10px;
+    font-size: 15px;
+  }
 }
 /*# sourceMappingURL=Home.css.map */
