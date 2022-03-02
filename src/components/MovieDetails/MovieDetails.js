@@ -23,7 +23,10 @@ const MovieDetails = () => {
 	const movieActors = useSelector(getMovieActors);
 	const movieTrailer = useSelector(getMovieTrailer);
 
-	if (movieDetails) {
+	if (Object.keys(movieDetails).length === 0) {
+		return "Loading...";
+	}
+	if (Object.keys(movieDetails).length !== 0) {
 		return (
 			<>
 				<div
@@ -35,11 +38,15 @@ const MovieDetails = () => {
 					<div className="movieDetailsContainer-filter">
 						<div className="movieDetails">
 							<div className="poster_wrapper">
-								<img
-									src={`https://image.tmdb.org/t/p/w300_and_h450_bestv2/${movieDetails.poster_path}`}
-									alt="MoviePoster"
-									className="poster"
-								/>
+								{movieDetails.poster_path !== null ? (
+									<img
+										src={`https://image.tmdb.org/t/p/w300_and_h450_bestv2/${movieDetails.poster_path}`}
+										alt="MoviePoster"
+										className="poster"
+									/>
+								) : (
+									""
+								)}
 							</div>
 							<div className="information">
 								<h1>{movieDetails.title || movieDetails.name}</h1>
@@ -103,7 +110,7 @@ const MovieDetails = () => {
 								{movieTrailer[0]
 									? movieTrailer.slice(0, 3).map((item, index) => {
 											return (
-												<div>
+												<div key={index}>
 													<a
 														href={`https://www.youtube.com/watch?v=${item.key}`}
 														className="trailer"
