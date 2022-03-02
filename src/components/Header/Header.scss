@@ -4,7 +4,7 @@
   display: flex;
   background-color: $primary-color;
   height: 72px;
-  // padding: 0px 20px;
+
   align-items: center;
   justify-content: space-around;
 
@@ -22,6 +22,8 @@
       width: 85%;
       justify-content: space-between;
       .logo {
+        text-decoration: none;
+        color: white !important;
         display: flex;
         text-align: end;
 
@@ -78,7 +80,7 @@
     opacity: 0;
     display: inline-block !important;
     left: -6%;
-
+    z-index: -2;
     justify-content: center;
     height: 105px !important;
     background-color: rgb(71, 179, 146);

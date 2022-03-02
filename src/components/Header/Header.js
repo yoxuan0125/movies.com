@@ -15,11 +15,11 @@ const Header = () => {
 	return (
 		<div className="header">
 			<div className="nav-wrapper">
-				<Link to="/" className="nav">
-					<div className="logo">
+				<div className="nav">
+					<Link to="/" className="logo">
 						<h1>MOVIES</h1>
 						<p>.com</p>
-					</div>
+					</Link>
 					<div className={navOpen ? `linksOpen` : `links`}>
 						<ul className="category">
 							<Link
@@ -49,7 +49,7 @@ const Header = () => {
 							<img src={user} alt="user" />
 						</a>
 					</div>
-				</Link>
+				</div>
 			</div>
 		</div>
 	);
