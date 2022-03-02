@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import useMovieDetailsSearch from "../../common/apis/movieDetailApi";
 import { useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
@@ -12,6 +12,11 @@ import "./MovieDetails.css";
 import MovieCard from "../MovieCard/MovieCard";
 
 const MovieDetails = () => {
+	//Scroll to the top of the page after render
+	useEffect(() => {
+		window.scrollTo(0, 0);
+	}, []);
+
 	const params = useParams();
 	useMovieDetailsSearch(params.id, params.category);
 	const movieDetails = useSelector(getMovieDetails);
@@ -51,18 +56,18 @@ const MovieDetails = () => {
 									""
 								)}
 								<p>劇情介紹 : </p>
-								<p>{movieDetails.overview}</p>
+								<p>{movieDetails.overview ? movieDetails.overview : "No Data"}</p>
 								<p>演員 : </p>
 								<div className="actorsList">
-									{movieActors.cast
-										? movieActors.cast.slice(0, 9).map((actor, index) => {
+									{movieActors
+										? movieActors.slice(0, 9).map((actor, index) => {
 												return (
 													<div key={index} className="actor">
 														{actor.original_name}
 													</div>
 												);
 										  })
-										: ""}
+										: "No Data"}
 								</div>
 							</div>
 						</div>
@@ -76,8 +81,8 @@ const MovieDetails = () => {
 								<span>主要演員</span>
 							</div>
 							<div className="actorBox">
-								{movieActors.cast
-									? movieActors.cast.slice(0, 9).map((item, index) => {
+								{movieActors[0]
+									? movieActors.slice(0, 9).map((item, index) => {
 											return (
 												<MovieCard
 													data-index={index}
@@ -87,7 +92,7 @@ const MovieDetails = () => {
 												/>
 											);
 									  })
-									: ""}
+									: "No Data"}
 							</div>
 						</div>
 						<div className="info">
@@ -95,19 +100,21 @@ const MovieDetails = () => {
 								<span>相關影片</span>
 							</div>
 							<div className="trailerBox">
-								{movieTrailer
+								{movieTrailer[0]
 									? movieTrailer.slice(0, 3).map((item, index) => {
 											return (
-												<a
-													href={`https://www.youtube.com/watch?v=${item.key}`}
-													className="trailer"
-													style={{
-														backgroundImage: `url("https://i.ytimg.com/vi/${item.key}/hqdefault.jpg")`,
-													}}
-												></a>
+												<div>
+													<a
+														href={`https://www.youtube.com/watch?v=${item.key}`}
+														className="trailer"
+														style={{
+															backgroundImage: `url("https://i.ytimg.com/vi/${item.key}/hqdefault.jpg")`,
+														}}
+													></a>
+												</div>
 											);
 									  })
-									: ""}
+									: "No Data"}
 							</div>
 						</div>
 					</div>

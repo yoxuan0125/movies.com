@@ -11,8 +11,8 @@
   display: grid;
   -ms-grid-rows: auto 1fr;
       grid-template-rows: auto 1fr;
-  -ms-grid-columns: (200px)[5];
-      grid-template-columns: repeat(5, 200px);
+  -ms-grid-columns: (200px)[auto-fill];
+      grid-template-columns: repeat(auto-fill, 200px);
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
@@ -22,5 +22,51 @@
 .list-container .title {
   width: 55%;
   margin-bottom: 5px;
+}
+
+@media screen and (max-width: 700px) {
+  .title h1 {
+    font-size: 30px;
+  }
+  .content-container {
+    width: 100%;
+    display: -webkit-box !important;
+    display: -ms-flexbox !important;
+    display: flex !important;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+  }
+  .content-container div {
+    height: 70%;
+  }
+  .content-container div .moviecard {
+    width: 100%;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: unset;
+    -webkit-box-direction: unset;
+        -ms-flex-direction: unset;
+            flex-direction: unset;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    height: 100%;
+    -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+  }
+  .content-container div .moviecard img {
+    width: 20%;
+    height: 100%;
+    margin: 0;
+    border-radius: 10px 0 0 10px;
+  }
+  .content-container div .moviecard .moviecontent {
+    width: 80%;
+    -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+  }
 }
 /*# sourceMappingURL=MovieList.css.map */

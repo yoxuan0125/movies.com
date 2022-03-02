@@ -30,7 +30,7 @@ export default function useMovieDetailsSearch(movie_id, category) {
 				.then((data) => {
 					setLoading(false);
 					dispatch(setMovieDetails(data[0].data));
-					dispatch(setmovieActors(data[1].data));
+					dispatch(setmovieActors(data[1].data.cast));
 					dispatch(setmovieTrailer(data[2].data.results));
 				})
 				.catch((e) => {
