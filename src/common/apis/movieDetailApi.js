@@ -28,10 +28,10 @@ export default function useMovieDetailsSearch(movie_id, category) {
 			await axios
 				.all(endpoints.map((endpoint) => axios.get(endpoint)))
 				.then((data) => {
-					setLoading(false);
 					dispatch(setMovieDetails(data[0].data));
 					dispatch(setmovieActors(data[1].data.cast));
 					dispatch(setmovieTrailer(data[2].data.results));
+					setLoading(false);
 				})
 				.catch((e) => {
 					console.log(e);

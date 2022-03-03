@@ -38,13 +38,13 @@ export default function useMovieSearch(category) {
 					cancelToken: new axios.CancelToken((c) => (cancel = c)),
 				})
 					.then((res) => {
-						setHasMore(res.data.results.length > 0);
-						setLoading(false);
 						if (category == "movie") {
 							dispatch(addMovies(res.data.results));
 						} else {
 							dispatch(addTVShows(res.data.results));
 						}
+						setHasMore(res.data.results.length > 0);
+						setLoading(false);
 					})
 					.catch((e) => {
 						if (axios.isCancel(e)) return;
