@@ -18,14 +18,14 @@ export default function useMovieDetailsSearch(movie_id, category) {
 		setLoading(true);
 		setError(false);
 
-		const fetchApi = async () => {
+		const fetchApi = () => {
 			const url1 = `https://api.themoviedb.org/3/${category}/${movie_id}?api_key=${APIKey}&language=zh-TW`;
 			const url2 = `https://api.themoviedb.org/3/${category}/${movie_id}/credits?api_key=${APIKey}&language=zh-TW`;
 			const url3 = `https://api.themoviedb.org/3/${category}/${movie_id}/videos?api_key=${APIKey}&language=en-US`;
 
 			let endpoints = [url1, url2, url3];
 
-			await axios
+			axios
 				.all(endpoints.map((endpoint) => axios.get(endpoint)))
 				.then((data) => {
 					dispatch(setMovieDetails(data[0].data));
