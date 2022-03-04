@@ -74,7 +74,7 @@ const Home = () => {
 		dispatch(setmovieActors([]));
 		dispatch(setmovieTrailer([]));
 		const url = (c) =>
-			`https://api.themoviedb.org/3/discover/${c}?api_key=${APIKey}&language=zh-TW&sort_by=popularity.desc&with_watch_monetization_types=flatrate`;
+			`https://api.themoviedb.org/3/${c}/popular?api_key=${APIKey}&language=zh-TW&page=1&region=TW`;
 
 		let endpoints = [url("tv"), url("movie")];
 
