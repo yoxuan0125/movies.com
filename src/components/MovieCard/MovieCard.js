@@ -6,11 +6,15 @@ const MovieCard = React.forwardRef((props, ref) => {
 	const location = useLocation();
 
 	return (
-		<div>
+		<div className="MovieCard-container">
 			<Link
-				to={`${props.category == undefined ? location.pathname : props.category}/${
-					props.item.id
-				}`}
+				to={
+					props.item.path
+						? props.item.path
+						: `${props.category == undefined ? location.pathname : props.category}/${
+								props.item.id
+						  }`
+				}
 				className="moviecard"
 				key={props.index}
 			>

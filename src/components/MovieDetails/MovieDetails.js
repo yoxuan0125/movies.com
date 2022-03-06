@@ -1,27 +1,93 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import useMovieDetailsSearch from "../../common/apis/movieDetailApi";
 import { useParams } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import {
 	getMovieDetails,
 	getMovieActors,
 	getMovieTrailer,
+	getwatchList,
+	setwatchList,
 } from "../../Redux/movies/movieSlice";
 import "./MovieDetails.css";
+
+import { doc, setDoc } from "@firebase/firestore";
+import { db, auth } from "../../firebase";
 
 import MovieCard from "../MovieCard/MovieCard";
 
 const MovieDetails = () => {
+	const params = useParams();
+	const dispatch = useDispatch();
+	const movieDetails = useSelector(getMovieDetails);
+	const movieActors = useSelector(getMovieActors);
+	const movieTrailer = useSelector(getMovieTrailer);
+	const userInfo = auth.currentUser;
+	const [isFound, setIsFound] = useState(false);
+	const [isUserSignedIn, setIsUserSignedIn] = useState(false);
+	const movieWatchList = useSelector(getwatchList);
+	const path = window.location.pathname;
+
 	//Scroll to the top of the page after render
 	useEffect(() => {
 		window.scrollTo(0, 0);
 	}, []);
 
-	const params = useParams();
-	useMovieDetailsSearch(params.id, params.category);
-	const movieDetails = useSelector(getMovieDetails);
-	const movieActors = useSelector(getMovieActors);
-	const movieTrailer = useSelector(getMovieTrailer);
+	//check if login
+	auth.onAuthStateChanged((user) => {
+		if (user) {
+			return setIsUserSignedIn(true);
+		}
+		setIsUserSignedIn(false);
+	});
+
+	//get movie details
+	useMovieDetailsSearch(dispatch, params.id, params.category);
+
+	//add to watchList/remove from watch list function
+	const addToWatchList = () => {
+		if (isUserSignedIn && movieWatchList) {
+			const newWatchList = [
+				...movieWatchList.data,
+				{
+					id: params.id,
+					path: path,
+					title: movieDetails.title || movieDetails.name,
+					original_title: movieDetails.original_title || movieDetails.original_name,
+					poster_path: `${movieDetails.poster_path}`,
+				},
+			];
+			setDoc(doc(db, "watchlist", userInfo.uid), {
+				data: [...newWatchList],
+			});
+			dispatch(setwatchList({ data: [...newWatchList] }));
+			setIsFound(true);
+		} else {
+			alert("Please log in");
+		}
+	};
+
+	const removeFromWatchList = () => {
+		const newWatchList = movieWatchList.data.filter(
+			(movie) => movie.id !== params.id
+		);
+		setDoc(doc(db, "watchlist", userInfo.uid), {
+			data: [...newWatchList],
+		});
+		dispatch(setwatchList({ data: [...newWatchList] }));
+		setIsFound(false);
+	};
+
+	//check if the movie is in the watchlist
+	useEffect(() => {
+		if (movieWatchList.length !== 0) {
+			movieWatchList.data?.some((element) => {
+				if (element.id === params.id) {
+					setIsFound(true);
+				}
+			});
+		}
+	}, [movieWatchList]);
 
 	if (Object.keys(movieDetails).length === 0) {
 		return "Loading...";
@@ -51,7 +117,7 @@ const MovieDetails = () => {
 							<div className="information">
 								<h1>{movieDetails.title || movieDetails.name}</h1>
 								<h3>{movieDetails.original_title || movieDetails.original_name}</h3>
-								{params.category == "movie" ? (
+								{params.category === "movie" ? (
 									<>
 										<p>上映日期 : {movieDetails.release_date}</p>
 										<p>
@@ -76,6 +142,15 @@ const MovieDetails = () => {
 										  })
 										: "No Data"}
 								</div>
+								{isFound && isUserSignedIn ? (
+									<button className="adding-btn" onClick={removeFromWatchList}>
+										移出片單
+									</button>
+								) : (
+									<button className="adding-btn" onClick={addToWatchList}>
+										加入片單
+									</button>
+								)}
 							</div>
 						</div>
 					</div>

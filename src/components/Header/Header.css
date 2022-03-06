@@ -4,7 +4,7 @@
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  background-color: rgba(22, 214, 150, 0.795);
+  background-color: #16d696;
   height: 72px;
   top: 0;
   -webkit-box-align: center;
@@ -12,6 +12,7 @@
           align-items: center;
   -ms-flex-pack: distribute;
       justify-content: space-around;
+  z-index: 5;
 }
 
 .header .nav-wrapper {
@@ -95,17 +96,46 @@
   margin: 20px;
 }
 
-.header .user-img,
-.header .user-img img {
+.header .userInfo {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.header .userInfo .user-img,
+.header .userInfo .user-img img {
   width: 40px;
   height: 40px;
+  border-radius: 50%;
+  margin-right: 10px;
 }
 
 .header .nav-btn {
   display: none;
 }
 
-@media screen and (max-width: 600px) {
+.header .signedIn-btn {
+  width: 70px;
+  height: 30px;
+  border: none;
+  border-radius: 16px;
+  color: white;
+  margin-right: 10px;
+  background-color: #07c485;
+}
+
+.header .signedIn-btn:hover {
+  cursor: pointer;
+  -webkit-transform: scale(1.2);
+          transform: scale(1.2);
+  -webkit-transition: all 0.3s;
+  transition: all 0.3s;
+}
+
+@media screen and (max-width: 700px) {
   .links {
     position: absolute;
     opacity: 0;
@@ -164,7 +194,7 @@
     border: none;
     width: 40px;
     height: 40px;
-    right: 15%;
+    right: -10%;
     border-radius: 50%;
     font-size: 18px;
     color: black;

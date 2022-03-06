@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
 import axios from "axios";
 import {
 	setMovieDetails,
@@ -7,11 +6,10 @@ import {
 	setmovieTrailer,
 } from "../../Redux/movies/movieSlice";
 
-export default function useMovieDetailsSearch(movie_id, category) {
+export default function useMovieDetailsSearch(dispatch, movie_id, category) {
 	const [loading, setLoading] = useState(false);
 	const [error, setError] = useState(false);
 
-	const dispatch = useDispatch();
 	const APIKey = "55d94f60e799bfe097c0411107134875";
 
 	useEffect(() => {

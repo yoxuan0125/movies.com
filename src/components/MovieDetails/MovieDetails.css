@@ -38,6 +38,23 @@
   display: inline-block;
 }
 
+.movieDetailsContainer .movieDetailsContainer-filter .movieDetails .information .adding-btn {
+  width: 70px;
+  height: 30px;
+  border: none;
+  border-radius: 16px;
+  color: white;
+  background-color: #07c485;
+}
+
+.movieDetailsContainer .movieDetailsContainer-filter .movieDetails .information .adding-btn:hover {
+  cursor: pointer;
+  -webkit-transform: scale(1.2);
+          transform: scale(1.2);
+  -webkit-transition: all 0.3s;
+  transition: all 0.3s;
+}
+
 .movieDetailsContainer .movieDetailsContainer-filter .movieDetails .information h1 {
   font-weight: bolder;
 }
@@ -66,7 +83,7 @@
 }
 
 .detailbox .detailbox-container .info .title {
-  color: rgba(22, 214, 150, 0.795);
+  color: #16d696;
   font-size: 25px;
   font-weight: 700;
   height: 33px;
@@ -91,7 +108,7 @@
 }
 
 .detailbox .detailbox-container .info .title span:before {
-  background: rgba(22, 214, 150, 0.795);
+  background: #16d696;
   bottom: 0;
   content: '';
   height: 1px;

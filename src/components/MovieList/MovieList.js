@@ -8,7 +8,7 @@ import {
 	setmovieActors,
 	setmovieTrailer,
 } from "../../Redux/movies/movieSlice";
-import { useState, useCallback, useRef, useEffect } from "react";
+import { useCallback, useRef, useEffect } from "react";
 import useMovieSearch from "../../common/apis/movieApi";
 import MovieCard from "../MovieCard/MovieCard";
 import "./MovieList.css";

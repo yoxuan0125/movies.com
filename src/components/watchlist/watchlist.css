@@ -1,0 +1,112 @@
+.watchlist-container {
+  min-height: calc(100vh - 122px);
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  margin-top: 40px;
+  margin-bottom: 20px;
+  padding: 0 20vw;
+}
+
+.watchlist-container h1 {
+  margin-bottom: 20px;
+}
+
+.watchlist-container .watchlist-wrapper {
+  width: 100%;
+  border-bottom: 2px;
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-rows: auto 1fr;
+      grid-template-rows: auto 1fr;
+  -ms-grid-columns: (200px)[auto-fill];
+      grid-template-columns: repeat(auto-fill, 200px);
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  grid-gap: 20px;
+}
+
+.watchlist-container .watchlist-wrapper .MovieCard-container {
+  height: 100%;
+}
+
+.watchlist-container .watchlist-wrapper .del-btn {
+  -webkit-transform: translate(540%, -120%);
+          transform: translate(540%, -120%);
+  z-index: 2;
+  width: 30px;
+  height: 30px;
+  color: #f05151;
+  border: none;
+  border-radius: 50%;
+  background-color: rgba(148, 148, 148, 0);
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  cursor: pointer;
+}
+
+.watchlist-container .watchlist-wrapper .del-btn:hover {
+  background-color: #f05151;
+  color: white;
+}
+
+.moviecontent {
+  width: 100%;
+}
+
+@media screen and (max-width: 700px) {
+  .watchlist-container {
+    width: 100%;
+    display: -webkit-box !important;
+    display: -ms-flexbox !important;
+    display: flex !important;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    padding: 0 !important;
+  }
+  .watchlist-container .moviecard {
+    width: 100%;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: unset;
+    -webkit-box-direction: unset;
+        -ms-flex-direction: unset;
+            flex-direction: unset;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    height: 100%;
+  }
+  .watchlist-container .moviecard img {
+    width: 30%;
+    height: 80px;
+    margin: 0;
+    border-radius: 10px 0 0 10px;
+  }
+  .watchlist-container .moviecard .moviecontent {
+    width: 70%;
+  }
+}
+/*# sourceMappingURL=watchlist.css.map */

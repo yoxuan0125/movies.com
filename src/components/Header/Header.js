@@ -1,11 +1,31 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import user from "../images/user.png";
+import userImg from "../images/user.png";
 import { FaBars } from "react-icons/fa";
+import { auth, SignIn, SignOut } from "../../firebase";
+import { useGetWatchList } from "../../common/apis/getWatchList";
+
 import "./Header.css";
 
 const Header = () => {
 	const [navOpen, setNavOpen] = useState(false);
+	const [isUserSignedIn, setIsUserSignedIn] = useState(false);
+	const userInfo = auth.currentUser;
+
+	//Scroll to the top of the page after render
+	useEffect(() => {
+		window.scrollTo(0, 0);
+	}, []);
+
+	//get watch list
+	useGetWatchList(userInfo);
+
+	auth.onAuthStateChanged((user) => {
+		if (user) {
+			return setIsUserSignedIn(true);
+		}
+		setIsUserSignedIn(false);
+	});
 
 	const navHandler = (e) => {
 		e.preventDefault();
@@ -38,17 +58,41 @@ const Header = () => {
 							>
 								<li>電視節目</li>
 							</Link>
-							<li>更多</li>
+							{isUserSignedIn ? (
+								<Link
+									to={`watchlist/${userInfo.uid}`}
+									onClick={() => {
+										setNavOpen(!navOpen);
+									}}
+								>
+									<li>我的片單</li>
+								</Link>
+							) : null}
 						</ul>
 					</div>
+
+					{isUserSignedIn ? (
+						<div className="userInfo">
+							<div className="user-img">
+								<Link to="user">
+									<img
+										src={userInfo.photoURL ? userInfo.photoURL : userImg}
+										alt="user"
+									/>
+								</Link>
+							</div>
+							<button onClick={SignOut} className="signedIn-btn">
+								Sign Out
+							</button>
+						</div>
+					) : (
+						<button onClick={SignIn} className="signedIn-btn">
+							Sing In
+						</button>
+					)}
 					<button className="nav-btn" onClick={navHandler}>
 						<FaBars />
 					</button>
-					<div className="user-img">
-						<a href="/user">
-							<img src={user} alt="user" />
-						</a>
-					</div>
 				</div>
 			</div>
 		</div>
