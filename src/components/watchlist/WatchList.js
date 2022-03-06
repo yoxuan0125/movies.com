@@ -1,14 +1,25 @@
-import React from "react";
-import { useSelector } from "react-redux";
+import React, { useState } from "react";
+import { useSelector, useDispatch } from "react-redux";
 import { getwatchList, setwatchList } from "../../Redux/movies/movieSlice";
 import { doc, setDoc } from "@firebase/firestore";
 import { db, auth } from "../../firebase";
-import { useDispatch } from "react-redux";
 import MovieCard from "../MovieCard/MovieCard";
 import { FaTrash } from "react-icons/fa";
+import { useNavigate } from "react-router-dom";
+
 import "./watchlist.css";
 
 const WatchList = () => {
+	const navigate = useNavigate();
+	const [isUserSignedIn, setIsUserSignedIn] = useState(false);
+
+	//check if login
+	auth.onAuthStateChanged((user) => {
+		if (user) {
+			return setIsUserSignedIn(true);
+		}
+		setIsUserSignedIn(false);
+	});
 	//get watch list
 	const movieWatchList = useSelector(getwatchList);
 
@@ -25,7 +36,11 @@ const WatchList = () => {
 		dispatch(setwatchList({ data: [...newWatchList] }));
 	};
 
-	if (movieWatchList) {
+	if (Object.keys(movieWatchList).length === 0) {
+		alert("Please log in");
+		window.location.href = "/";
+	}
+	if (Object.keys(movieWatchList).length !== 0) {
 		return (
 			<div className="watchlist-container">
 				<h1>我的片單</h1>
@@ -43,6 +58,9 @@ const WatchList = () => {
 				</div>
 			</div>
 		);
+	} else {
+		window.location.href = "/";
+		alert("please log in");
 	}
 };
 

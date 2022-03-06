@@ -38,6 +38,7 @@ export function SignOut() {
 		.signOut()
 		.then(() => {
 			console.log("Signed Out");
+			window.location.href = "/";
 		})
 		.catch((error) => {
 			console.log(error);
