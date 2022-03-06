@@ -8,9 +8,9 @@ import { FaTrash } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 
 import "./watchlist.css";
+import { connectAuthEmulator } from "firebase/auth";
 
 const WatchList = () => {
-	const navigate = useNavigate();
 	const [isUserSignedIn, setIsUserSignedIn] = useState(false);
 
 	//check if login
@@ -29,21 +29,22 @@ const WatchList = () => {
 	const clickHandler = (e) => {
 		const id = e.target.parentElement.id;
 		const newWatchList = movieWatchList.data.filter((movie) => movie.id !== id);
-		console.log(newWatchList);
+
 		setDoc(doc(db, "watchlist", userInfo.uid), {
 			data: [...newWatchList],
 		});
 		dispatch(setwatchList({ data: [...newWatchList] }));
 	};
 
-	if (Object.keys(movieWatchList).length === 0) {
+	if (Object.keys(movieWatchList).length === 0 && auth.currentUser === null) {
 		alert("Please log in");
 		window.location.href = "/";
 	}
-	if (Object.keys(movieWatchList).length !== 0) {
+	if (Object.keys(movieWatchList).length !== 0 && auth.currentUser) {
 		return (
 			<div className="watchlist-container">
 				<h1>我的片單</h1>
+				{!movieWatchList.data.length ? <h2>尚未有待看清單</h2> : null}
 				<div className="watchlist-wrapper">
 					{movieWatchList.data.map((item, index) => {
 						return (

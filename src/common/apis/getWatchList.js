@@ -1,6 +1,7 @@
-import { doc, getDoc } from "@firebase/firestore";
+import { doc, getDoc, setDoc } from "@firebase/firestore";
 import { useDispatch } from "react-redux";
 import { db } from "../../firebase";
+
 import { setwatchList } from "../../Redux/movies/movieSlice";
 
 export function useGetWatchList(userInfo) {
@@ -15,7 +16,10 @@ export function useGetWatchList(userInfo) {
 					)
 				);
 			} else {
-				console.log("No such document!");
+				dispatch(setwatchList({ data: [] }));
+				setDoc(doc(db, "watchlist", userInfo.uid), {
+					data: [],
+				});
 			}
 		});
 	}
