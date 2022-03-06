@@ -28,6 +28,7 @@ const WatchList = () => {
 
 	const clickHandler = (e) => {
 		const id = e.target.parentElement.id;
+		console.log(e.target.parentElement);
 		const newWatchList = movieWatchList.data.filter((movie) => movie.id !== id);
 
 		setDoc(doc(db, "watchlist", userInfo.uid), {

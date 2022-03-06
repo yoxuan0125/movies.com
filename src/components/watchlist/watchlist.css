@@ -45,7 +45,7 @@
 .watchlist-container .watchlist-wrapper .del-btn {
   -webkit-transform: translate(540%, -120%);
           transform: translate(540%, -120%);
-  z-index: 2;
+  z-index: 20;
   width: 30px;
   height: 30px;
   color: #f05151;
@@ -67,6 +67,10 @@
 .watchlist-container .watchlist-wrapper .del-btn:hover {
   background-color: #f05151;
   color: white;
+}
+
+.watchlist-container .watchlist-wrapper .del-btn svg {
+  pointer-events: none;
 }
 
 .moviecontent {
