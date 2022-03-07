@@ -28,11 +28,6 @@ const MovieDetails = () => {
 	const movieWatchList = useSelector(getwatchList);
 	const path = window.location.pathname;
 
-	//Scroll to the top of the page after render
-	useEffect(() => {
-		window.scrollTo(0, 0);
-	}, []);
-
 	//check if login
 	auth.onAuthStateChanged((user) => {
 		if (user) {
@@ -87,7 +82,7 @@ const MovieDetails = () => {
 				}
 			});
 		}
-	}, [movieWatchList]);
+	}, [movieWatchList, params.id]);
 
 	if (Object.keys(movieDetails).length === 0) {
 		return "Loading...";

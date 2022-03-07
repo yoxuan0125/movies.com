@@ -5,21 +5,10 @@ import { doc, setDoc } from "@firebase/firestore";
 import { db, auth } from "../../firebase";
 import MovieCard from "../MovieCard/MovieCard";
 import { FaTrash } from "react-icons/fa";
-import { useNavigate } from "react-router-dom";
 
 import "./watchlist.css";
-import { connectAuthEmulator } from "firebase/auth";
 
 const WatchList = () => {
-	const [isUserSignedIn, setIsUserSignedIn] = useState(false);
-
-	//check if login
-	auth.onAuthStateChanged((user) => {
-		if (user) {
-			return setIsUserSignedIn(true);
-		}
-		setIsUserSignedIn(false);
-	});
 	//get watch list
 	const movieWatchList = useSelector(getwatchList);
 

@@ -11,7 +11,7 @@ const MovieCard = React.forwardRef((props, ref) => {
 				to={
 					props.item.path
 						? props.item.path
-						: `${props.category == undefined ? location.pathname : props.category}/${
+						: `${props.category === undefined ? location.pathname : props.category}/${
 								props.item.id
 						  }`
 				}
