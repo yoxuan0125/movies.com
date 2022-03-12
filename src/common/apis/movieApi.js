@@ -6,7 +6,6 @@ import {
 	addTVShows,
 	clearList,
 	getNextPage,
-	getAllMovies,
 } from "../../Redux/movies/movieSlice";
 
 export default function useMovieSearch(category) {
@@ -18,42 +17,40 @@ export default function useMovieSearch(category) {
 	const APIKey = "55d94f60e799bfe097c0411107134875";
 
 	const pageNumber = useSelector(getNextPage);
-	const movies = useSelector(getAllMovies);
 
 	useEffect(() => {
 		dispatch(clearList());
-	}, [category]);
+	}, [category, dispatch]);
 
 	useEffect(() => {
-		{
-			{
-				setLoading(true);
-				setError(false);
-				let cancel;
-				axios({
-					method: "GET",
-					url: `
+		const fetchList = async () => {
+			setLoading(true);
+			setError(false);
+			let cancel;
+			await axios({
+				method: "GET",
+				url: `
 			https://api.themoviedb.org/3/discover/${category}?api_key=${APIKey}&language=zh-TW&sort_by=popularity.desc&with_watch_monetization_types=flatrate`,
-					params: { page: pageNumber },
-					cancelToken: new axios.CancelToken((c) => (cancel = c)),
+				params: { page: pageNumber },
+				cancelToken: new axios.CancelToken((c) => (cancel = c)),
+			})
+				.then((res) => {
+					if (category === "movie") {
+						dispatch(addMovies(res.data.results));
+					} else {
+						dispatch(addTVShows(res.data.results));
+					}
+					setHasMore(res.data.results.length > 0);
+					setLoading(false);
 				})
-					.then((res) => {
-						if (category == "movie") {
-							dispatch(addMovies(res.data.results));
-						} else {
-							dispatch(addTVShows(res.data.results));
-						}
-						setHasMore(res.data.results.length > 0);
-						setLoading(false);
-					})
-					.catch((e) => {
-						if (axios.isCancel(e)) return;
-						setError(true);
-					});
-				return () => cancel();
-			}
-		}
-	}, [pageNumber, category]);
+				.catch((e) => {
+					if (axios.isCancel(e)) return;
+					setError(true);
+				});
+			return () => cancel();
+		};
+		fetchList();
+	}, [pageNumber, category, dispatch]);
 
 	return { loading, error, hasMore };
 }

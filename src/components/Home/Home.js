@@ -69,16 +69,13 @@ const Home = () => {
 	};
 
 	//Get TOP10 movies
-	useEffect(() => {
-		dispatch(setMovieDetails([]));
-		dispatch(setmovieActors([]));
-		dispatch(setmovieTrailer([]));
+
+	const fetchTopMovies = async () => {
 		const url = (c) =>
 			`https://api.themoviedb.org/3/${c}/popular?api_key=${APIKey}&language=zh-TW&page=1&region=TW`;
 
 		let endpoints = [url("tv"), url("movie")];
-
-		axios
+		await axios
 			.all(endpoints.map((endpoint) => axios.get(endpoint)))
 			.then((data) => {
 				setTop10TVShows(data[0].data.results.slice(0, 10));
@@ -87,7 +84,14 @@ const Home = () => {
 			.catch((e) => {
 				console.log(e);
 			});
-	}, []);
+	};
+
+	useEffect(() => {
+		dispatch(setMovieDetails([]));
+		dispatch(setmovieActors([]));
+		dispatch(setmovieTrailer([]));
+		fetchTopMovies();
+	}, [dispatch]);
 
 	return (
 		<div className="main-container">
