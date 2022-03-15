@@ -54,10 +54,34 @@
       align-items: center;
       color: white;
       height: 100%;
+      &::before {
+        content: '';
+        position: absolute;
+        border-color: #ffffff;
+        border-style: solid;
+        border-width: 0 0 0.2em 0;
+        height: 1em;
+        margin-top: 1em;
+        margin-left: 0.5em;
+        width: 5.5em;
+        transform: scaleX(0);
+      }
     }
 
     a:hover {
-      background-color: rgb(71, 179, 146);
+      &::before {
+        content: '';
+        position: absolute;
+        border-color: #ffffff;
+        border-style: solid;
+        border-width: 0 0 0.2em 0;
+        height: 1em;
+        margin-top: 1em;
+        margin-left: 0.5em;
+        width: 5.5em;
+        transform: scaleX(1);
+        transition: all 0.3s ease-in-out;
+      }
     }
 
     li {
